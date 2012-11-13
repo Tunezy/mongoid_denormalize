@@ -53,6 +53,7 @@ module Mongoid::Denormalize
   
   private
     def denormalize_from
+      self.denormalize_definitions ||= []
       self.denormalize_definitions.each do |definition|
         next if definition[:options][:to]
         
@@ -71,6 +72,7 @@ module Mongoid::Denormalize
     end
     
     def denormalize_to
+      self.denormalize_definitions ||= []
       self.denormalize_definitions.each do |definition|
         next unless definition[:options][:to]
         as = definition[:options][:as]
